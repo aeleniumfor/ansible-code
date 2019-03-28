@@ -1,0 +1,13 @@
+- hosts: master
+  tasks:
+    - name: yum update
+      yum: name=* state=latest
+  
+    - name: yum install pakeages
+      yum:
+        name: "{{ packages }}"
+      vars:
+        packages:
+          - git
+          - wget
+          - curl
