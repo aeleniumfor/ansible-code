@@ -2,7 +2,7 @@
   tasks:
     - name: yum update
       yum: name=* state=latest
-  
+
     - name: yum install pakeages
       yum:
         name: "{{ packages }}"
@@ -11,3 +11,9 @@
           - git
           - wget
           - curl
+
+    - name: download containerd files
+      get_url: url="https://github.com/containerd/containerd/releases/download/v1.2.4/containerd-1.2.4.linux-amd64.tar.gz" dest=./
+
+    - name: containerd files unarchive
+      command: tar zxvf ./containerd-1.2.4.linux-amd64.tar.gz
