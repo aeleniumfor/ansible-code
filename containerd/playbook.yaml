@@ -18,11 +18,16 @@
     - name: containerd files unarchive
       command: tar zxvf ./containerd-1.2.4.linux-amd64.tar.gz -C /usr/local/
 
-    - name: move containerd.conf in systemd
+    - name: move containerd.service in /etc/systemd/system/
       copy: >
-        src=./containerd.conf
-        dest=/etc/systemd/system/containerd.conf
+        src=./containerd.service
+        dest=/etc/systemd/system/containerd.service
         owner=root
         group=root
         mode=0644
-    - name:
+    - name: systemd
+      systemd:
+        name: containerd.service
+        state: restarted
+        daemon_reload: yes
+        enabled: yes
