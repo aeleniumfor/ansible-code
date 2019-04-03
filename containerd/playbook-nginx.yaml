@@ -16,6 +16,11 @@
           
     - name: nginx firewall
       firewalld: service=http permanent=true state=enabled immediate=true
+    - name: copy nginx.config
+      copy:
+        src: ./nginx.conf
+        dest: /etc/nginx
+        mode: 0644
     
     - name: systemd
       systemd:
