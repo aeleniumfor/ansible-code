@@ -39,3 +39,6 @@
         state: restarted
         daemon_reload: yes
         enabled: yes
+
+    - name: cni-tool install
+      command: tar zxvf ./containerd-1.2.4.linux-amd64.tar.gz -C /usr/local/
