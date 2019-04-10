@@ -41,4 +41,10 @@
         enabled: yes
 
     - name: cni-tool install
-      command: tar zxvf ./containerd-1.2.4.linux-amd64.tar.gz -C /usr/local/
+      shell: >
+        git clone https://github.com/containernetworking/plugins.git ;
+        cd plugins;
+        yum -y install go;
+        sh build_linux.sh;
+        mkdir -p /opt/cni/bin;
+        mv bin/* /opt/cni/bin
